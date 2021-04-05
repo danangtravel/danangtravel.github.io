@@ -1,0 +1,51 @@
+jQuery(document).ready(function($) {
+    $('.formCrm').submit(function(event){
+        event.preventDefault();
+
+        // let sendButtonText = document.getElementById('buttonSubmitCRM').innerText;
+        let sendButtonForm = $(this).find('.buttonSubmitCRM');
+        let resultForm =  $(this).find('.result');
+        let loaderForm =  $(this).find('.loader');
+        let redirectUrl = $(this).find('.redirectUrl') ? $(this).find('.redirectUrl').data('redirect') : '';
+        let successMessage = $(this).find('.message').data('success') ? $(this).find('.message').data('success') : '<b>Thông báo:</b> đã gửi liên hệ thành công!';
+        let errorMessage = $(this).find('.message').data('error') ? $(this).find('.message').data('error') : '<b>Thông báo:</b> đã gửi liên hệ thất bại.';
+        let requiredFieldMessage = $(this).find('.message') ? $(this).find('.message').data('requiredField') : '<b>Thông báo:</b> trường này là bắt buộc.';
+        let invalidMessage = $(this).find('.message').data('invalid') ? $(this).find('.message').data('invalid') : '<b>Thông báo:</b> Nội dung không hợp lệ.';
+
+        let sendButtonText = sendButtonForm.text();
+        let listNameDOM = $(this).find('.elementor-field-label');
+        let listName = [];
+        for (let i = 0; i < listNameDOM.length; i++) {
+            listName.push(listNameDOM[i].innerText);
+        }
+        let dataForm = new FormData(this);
+        dataForm.append('listNameInput', listName.toString());
+        $.ajax({
+            type: 'POST',
+            url: spwao_ajax_object.ajax_url,
+            data : dataForm,
+            processData: false,
+            contentType: false,
+            dataType: 'text',
+            beforeSend: () => {
+                resultForm.html('').removeClass('elementor-message elementor-message-success elementor-message-danger');
+                sendButtonForm.text('Đang gửi...').css('opacity','0.5').attr('disabled','true');
+            },
+            success : function(result) {
+                if(result) {
+                    let resultjson = JSON.parse(result.replace("\"}0", "\"}"));
+                    if(resultjson && resultjson.redirectUrl) {
+                        window.location.href = resultjson.redirectUrl;
+                    } else {
+                        sendButtonForm.text(sendButtonText).removeAttr('disabled').css('opacity','1');
+                        resultForm.addClass('elementor-message elementor-message-success').html(successMessage);
+                    }
+                }
+            },
+            error: function(ResultError) {
+                sendButtonForm.text(sendButtonText).removeAttr('disabled').css('opacity','1');
+                resultForm.addClass('elementor-message elementor-message-danger').html(errorMessage);
+            },
+        });
+    });
+});
