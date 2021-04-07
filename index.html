@@ -35,6 +35,206 @@
 
 <link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
 <style>
+
+
+#cssmenu
+{
+    width:auto%;
+    display:block;
+    text-align:center;
+    font-family:Oswald;
+    line-height:1.2;
+}
+#cssmenu ul
+{
+    width:100%;
+    display:block;
+    font-size:0;
+    text-align:center;
+    color:#EEEEEE;
+    background-color: #333333;
+    border: transparent;
+    margin:0; 
+    padding:0;
+	margin-top:-30px;
+    list-style:none;
+    position:fixed;
+    z-index:999999990;
+    border-radius: 3px;
+} 
+
+#cssmenu li
+{
+    display:inline-block;
+    position:relative;    
+    font-size:0; 
+    margin:0;
+    padding:0;
+}
+
+/*Top level items
+---------------------------------------*/
+
+#cssmenu >ul>li>span, #cssmenu >ul>li>a 
+{   
+    font-size:22px;
+    color:inherit;
+    text-decoration:none;
+    padding:14px 20px; 
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:2px;   
+    display:block;   
+    position:relative;
+    transition:all 0.3s;
+}
+#cssmenu li:hover > span, #cssmenu li:hover > a
+{  
+    color:#333333;
+    background-color:#F3F3F3;
+}
+
+/*Sub level items
+---------------------------------------*/
+#cssmenu .dropdown
+{
+    text-align:left;
+    left:0;
+    font-family:Helvetica, Arial, sans-serif;
+    color: #333333;
+    background-color:#F3F3F3;
+    border:none;
+    position:absolute;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display:none;
+    opacity:0;
+    cursor:default;
+}
+
+#cssmenu .dropdown li {
+    display: block;  
+}
+
+#cssmenu .dropdown li > span, #cssmenu .dropdown li > a, #cssmenu .clm a, #cssmenu .clm h3 
+{
+    font-size:14px;
+    font-weight:400;
+    font-family:inherit;
+    margin:0;
+    padding:8px 20px; 
+    display:block;
+    color:inherit;
+    text-decoration:none;
+}
+#cssmenu .clm h3 {
+    font-size:20px;
+    font-weight:700;
+}
+#cssmenu .sub-item {
+    background-color:#F3F3F3;
+    position:relative;       
+    transition:all 0.3s;
+}
+
+#cssmenu .dropdown li:hover > span, #cssmenu .dropdown li:hover > a
+{
+
+    color:#333333;
+    background-color:#DDDDDD;
+}
+
+#cssmenu .clm a:hover
+{
+    color:#333333;
+    transition:color 0.2s;
+}
+
+#cssmenu .dropdown.right0 {left:auto;right:0;} 
+#cssmenu .dropdown li > .dropdown.right0 {left:auto;right:100%;} 
+       
+#cssmenu li.full-width{
+    position:static;
+}
+#cssmenu li.full-width .dropdown{
+    width:100%;
+    left:0;
+    box-sizing:border-box;
+}  
+
+#cssmenu li:hover > .dropdown
+{
+    display:block;
+    opacity:1;
+    z-index:1;
+}
+
+#cssmenu .dropdown li > .dropdown
+{
+    left:100%; right:auto;
+    top:0;
+}
+
+#cssmenu ul.dropdown
+{
+    min-width:240px; /* Sub level menu min width */
+}
+
+#cssmenu div.dropdown  {
+    text-align:center;
+}
+
+/* each column */
+#cssmenu .clm
+{
+    text-align:left;
+    margin:20px;
+    vertical-align:top;/*or middle*/
+    width:auto;
+    min-width:240px;
+    display:inline-block;
+    *display:inline;*zoom:1;
+}
+
+#cssmenu .clm a:hover
+{
+    color:#333333;
+    text-decoration:underline;
+}
+
+/*-----------Arrows----------------*/
+#cssmenu .arrow {
+    color:inherit;
+    border-style:solid; border-width:2px 2px 0 0; padding:4px; transform:rotate(135deg);margin-top:-8.5px;margin-left:4px;
+    position:relative;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align:middle;
+    overflow:hidden;/*for IE6*/
+}
+        
+#cssmenu .dropdown .arrow {
+    transform:rotate(45deg);
+    top:50%;margin-top:-6px;
+    position:absolute;left:auto;right:20px;
+} 
+
+
+
+@keyframes topItemAnimation {
+  from {opacity: 0; transform:translate3d(0, -60px, 0);}
+  to {opacity: 1; transform:translate3d(0, 0, 0);}
+}
+#cssmenu li a {animation:none;}
+#cssmenu.active li a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.08333333333333333s backwards;}
+#cssmenu.active li:nth-of-type(1) a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.5s backwards;}
+#cssmenu.active li:nth-of-type(2) a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.4166666666666667s backwards;}
+#cssmenu.active li:nth-of-type(3) a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.3333333333333333s backwards;}
+#cssmenu.active li:nth-of-type(4) a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.25s backwards;}
+#cssmenu.active li:nth-of-type(5) a { animation: topItemAnimation 0.5s cubic-bezier(.16,.84,.44,1) 0.16666666666666666s backwards;}@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { #cssmenu.active li a{animation:none!important;}}
+
+
+
 img.wp-smiley,
 img.emoji {
 	display: inline !important;
@@ -99,6 +299,29 @@ body.custom-background { background-color: #ffffff; }
 			<div class="elementor-inner">
 				<div class="elementor-section-wrap">
 							<section class="elementor-element elementor-element-dd443b7 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="dd443b7" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+							    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+									<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald" />
+									<link href="cssmenu/cssmenu.css" rel="stylesheet" />
+									<style>
+										body {
+											margin:0;
+											background:#;
+										}
+										#menuDemo { text-align:center; padding:30px 8px; }
+									</style>
+								<div id="menuDemo">
+								<!--start CssMenu-->
+								<div id="cssmenu">
+									<ul>
+										<li style="color:#FFCD00"><a href="#formdangky"><b>Mua vé ngay</b></a></li>
+										<li><a href="#formgioithieu">Giới thiệu</a></li>
+										<li><a href="#formdichvu">Dịch vụ</a></li>
+										<li><a href="#formdanhsachtour">Danh sách Tour</a></li>
+										<li><a href="#">Hình ảnh</a></li>
+									</ul>
+								</div>
+								<!--end CssMenu-->
+								</div>
 							<div class="elementor-background-overlay"></div>
 							<div class="elementor-container elementor-column-gap-default">
 				<div class="elementor-row">
@@ -119,7 +342,7 @@ body.custom-background { background-color: #ffffff; }
 					<div class="elementor-widget-wrap">
 				<div class="elementor-element elementor-element-8d7d68a elementor-widget elementor-widget-text-editor" data-id="8d7d68a" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-					<div class="elementor-text-editor elementor-clearfix"><p style="text-align: center"></p></div>
+					<div class="elementor-text-editor elementor-clearfix" id="formdangky"><p style="text-align: center"></p></div>
 				</div>
 				</div>
 						</div>
@@ -154,10 +377,10 @@ body.custom-background { background-color: #ffffff; }
 				</div>
 				<div class="elementor-element elementor-element-7e7d0c4 elementor-align-left elementor-widget elementor-widget-bdt-modal" data-id="7e7d0c4" data-element_type="widget" data-widget_type="bdt-modal.default">
 				<div class="elementor-widget-container">
-					<div class="bdt-modal-wrapper">
+					<div class="bdt-modal-wrapper" >
 		    
 		    		<a class="bdt-modal-button elementor-button elementor-size-md elementor-animation-pulse" bdt-toggle="target: #bdt-modal-7e7d0c4" href="javascript:void(0)">
-			<span class="elementor-button-content-wrapper">
+			<span class="elementor-button-content-wrapper" id="formgioithieu">
 								<span class="elementor-button-text"><b>Chỉ 150k / vé, Book ngay 👉</b></span><a href="Tel:0332110913">📞 0332110913</a>
 			</span>
 		</a>
@@ -175,12 +398,12 @@ body.custom-background { background-color: #ffffff; }
 			</div>
 		</div>
 				<div class="elementor-element elementor-element-05a1d9f elementor-column elementor-col-33 elementor-inner-column" data-id="05a1d9f" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-			<div class="elementor-column-wrap  elementor-element-populated" id="formdangky">
+			<div class="elementor-column-wrap  elementor-element-populated">
 							<div class="elementor-background-overlay"></div>
 					<div class="elementor-widget-wrap">
 				<div class="elementor-element elementor-element-bdd5427 elementor-widget elementor-widget-heading" data-id="bdd5427" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">đăng ký ngay hôm nay</h2>		</div>
+			<h2 class="elementor-heading-title elementor-size-default" style="Color:#FFCD00">đăng ký ngay hôm nay</h2>		</div>
 				</div>
 				<div class="elementor-element elementor-element-e030b8b elementor-button-align-stretch elementor-widget elementor-widget-spw-form-crm" data-id="e030b8b" data-element_type="widget" data-settings="{&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="spw-form-crm.default">
 				<div class="elementor-widget-container">
@@ -256,7 +479,7 @@ body.custom-background { background-color: #ffffff; }
 			</div>
 						<div class="elementor-icon-box-content">
 				<h3 class="elementor-icon-box-title">
-					<span>Chỉ 150k / Vé 👉 Book Ngay</span>
+					<span id="formdichvu">Chỉ 150k / Vé 👉 Book Ngay</span>
 				</h3>
 								<p class="elementor-icon-box-description"><a href="Tel:0332110913">📞 0332110913</a></p>
 							</div>
@@ -375,9 +598,9 @@ body.custom-background { background-color: #ffffff; }
 			</div>
 						<div class="elementor-icon-box-content">
 				<h3 class="elementor-icon-box-title">
-					<span>Giải trí </span>
+					<span>Miễn phí </span>
 				</h3>
-								<p class="elementor-icon-box-description">Miễn phí Karaoke </p>
+								<p class="elementor-icon-box-description">Hát Karaoke </p>
 							</div>
 		</div>
 				</div>
@@ -397,9 +620,9 @@ body.custom-background { background-color: #ffffff; }
 			</div>
 						<div class="elementor-icon-box-content">
 				<h3 class="elementor-icon-box-title">
-					<span>Văn Nghệ </span>
+					<span>Miễn phí </span>
 				</h3>
-								<p class="elementor-icon-box-description">Múa Chăm truyền thống</p>
+								<p class="elementor-icon-box-description">Xem Múa Chăm</p>
 							</div>
 		</div>
 				</div>
@@ -422,9 +645,10 @@ body.custom-background { background-color: #ffffff; }
 				<div class="elementor-element elementor-element-aae7d41 elementor-column elementor-col-100 elementor-top-column" data-id="aae7d41" data-element_type="column">
 			<div class="elementor-column-wrap  elementor-element-populated">
 					<div class="elementor-widget-wrap">
+					<div class="danh-sach-tour" id="formdanhsachtour"> </div>
 				<div class="elementor-element elementor-element-a4e0166 elementor-widget elementor-widget-heading" data-id="a4e0166" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">ĐẶT PHÒNG NGAY HÔM NAY</h2>		</div>
+			<h2 class="elementor-heading-title elementor-size-default" style="Color:#FFCD00">DANH SÁCH TOUR DU THUYỀN</h2>		</div>
 				</div>
 				<section class="elementor-element elementor-element-e6bfa3a elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-inner-section" data-id="e6bfa3a" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-extended">
@@ -435,12 +659,14 @@ body.custom-background { background-color: #ffffff; }
 				<div class="elementor-element elementor-element-dc6ebf7 elementor-widget elementor-widget-image" data-id="dc6ebf7" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-image">
-										<img src="./dulichdanangreview_files/hammocks-with-palm-trees-p1kv6d54goooz60gc3d1hwsjsbg3r0yhq8rlx5fr20.jpg" title="đặt phòng 1" alt="dat-phong-1" class="elementor-animation-shrink">											</div>
+										<img src="./dulichdanangreview_files/tour-du-thuyen-ngam-canh-dem-song-han.jpg" title="Tour du thuyền ngắm cảnh đêm Sông Hàn" alt="tour-du-thuyen-ngam-canh-dem-song-han" class="elementor-animation-shrink">											</div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-3ee4654 elementor-widget elementor-widget-text-editor" data-id="3ee4654" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px">Phòng 1</span></h3><p style="text-align: left">Mô tả thông tin có giá trị, những điểm nổi bật, lời giới thiệu hấp dẫn về sản phẩm dịch vụ, giúp người xem dễ dàng tìm thấy nội dung của bạn trong kết quả tìm kiếm</p></div>
+					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px; color:#df0008">Ngắm cảnh đêm trên Sông Hàn</span></h3><p style="text-align: left">Sông Hàn là điểm thăm quan “nhất định phải tới” của mọi du khách khi du lịch Đà Nẵng. Thế nhưng, để có một trải nghiệm hoàn toàn mới lạ và độc đáo, bạn hãy thử đi du thuyền trên sông Hàn và thưởng ngoạn cảnh thành phố Đà Nẵng về đêm. Hãy cùng Du Thuyền Cát Biển bắt đầu cuộc hành trình này nhé!
+
+</p></div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-f129634 elementor-widget elementor-widget-divider" data-id="f129634" data-element_type="widget" data-widget_type="divider.default">
@@ -457,17 +683,17 @@ body.custom-background { background-color: #ffffff; }
 							<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-tags"></i>						</span>
-										<span class="elementor-icon-list-text">$210.000</span>
+										<span class="elementor-icon-list-text" style="color:#df0008"><b>150.000 vnd</b></span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-clipboard-check"></i>						</span>
-										<span class="elementor-icon-list-text">Châu Á và châu Âu</span>
+										<span class="elementor-icon-list-text">Tất cả các ngày trong tuần</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-home"></i>						</span>
-										<span class="elementor-icon-list-text">3 bedrooms, 1 livingroom</span>
+										<span class="elementor-icon-list-text">4 Chuyến mỗi ngày <a href="#formgioithieu">[ Xem giờ xuất bến ]</a></span>
 									</li>
 						</ul>
 				</div>
@@ -488,15 +714,8 @@ body.custom-background { background-color: #ffffff; }
 	                            
 	                	                	<button class="bdt-modal-close-default bdt-icon bdt-close" type="button" bdt-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
 	                	                
-	                	                    <div class="bdt-modal-header bdt-text-left">
-	                    	<h3 class="bdt-modal-title">Đây là tiêu đề Popup của bạn</h3>
-	                    </div>
-	                	                
-	                <div class="bdt-modal-body">
-	                	Một sự thanh thản tuyệt vời đã chiếm hữu toàn bộ tâm hồn tôi, giống như những buổi sáng ngọt ngào của mùa xuân mà tôi tận hưởng bằng cả trái tim.	                </div>
-
-	                	                    <div class="bdt-modal-footer bdt-text-left">
-	                    	Popup chân trang ở đây	                    </div>
+	                	                    <deiv class="bdt-modal-header bdt-text-left">
+	                    
 	                		        </div>
 		    </div>
 	    </div>
@@ -512,12 +731,14 @@ body.custom-background { background-color: #ffffff; }
 				<div class="elementor-element elementor-element-866457c elementor-widget elementor-widget-image" data-id="866457c" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-image">
-										<img src="./dulichdanangreview_files/bridge-river-p1kzktrmm7lw8lu6137ucf90zseqe31gik1fhghg3c.jpg" title="tour berlin" alt="tour berlin" class="elementor-animation-shrink">											</div>
+										<img src="./dulichdanangreview_files/tour-du-thuyen-ngam-cau-rong-phun-lua.jpg" title="Tour du thuyền ngắm cầu rồng phun lửa" alt="Tour du thuyền ngắm cầu rồng phun lửa" class="elementor-animation-shrink">											</div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-e7b49da elementor-widget elementor-widget-text-editor" data-id="e7b49da" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px">Phòng 2</span></h3><p style="text-align: left">Mô tả thông tin có giá trị, những điểm nổi bật, lời giới thiệu hấp dẫn về sản phẩm dịch vụ, giúp người xem dễ dàng tìm thấy nội dung của bạn trong kết quả tìm kiếm</p></div>
+					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px; color:#df0008">Ngắm Cầu Rồng phun lửa</span></h3><p style="text-align: left">Đối với những du khách đến với thành phố Đà Nẵng thì xem được cầu Rồng Đà Nẵng phun lửa là một trong những khoảnh khắc được mong đợi nhất. Câu hỏi “Cầu Rồng Đà Nẵng phun lửa lúc mấy giờ” luôn là câu hỏi mà nhiều du khách còn đang băn khoăn trong chuyến du lịch đến với thành phố biển xinh đẹp này.
+
+</p></div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-4cd6bc5 elementor-widget elementor-widget-divider" data-id="4cd6bc5" data-element_type="widget" data-widget_type="divider.default">
@@ -534,17 +755,17 @@ body.custom-background { background-color: #ffffff; }
 							<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-tags"></i>						</span>
-										<span class="elementor-icon-list-text">$210.000</span>
+										<span class="elementor-icon-list-text" style="color:#df0008"><b>150.000 vnd</b></span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-clipboard-check"></i>						</span>
-										<span class="elementor-icon-list-text">Châu Á và châu Âu</span>
+										<span class="elementor-icon-list-text">Thứ 7, Chủ nhật</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-home"></i>						</span>
-										<span class="elementor-icon-list-text">3 bedrooms, 1 livingroom</span>
+										<span class="elementor-icon-list-text">Xuất bến lúc 20:30</span>
 									</li>
 						</ul>
 				</div>
@@ -564,16 +785,6 @@ body.custom-background { background-color: #ffffff; }
 	            <div class="bdt-modal-dialog">
 	                            
 	                	                	<button class="bdt-modal-close-default bdt-icon bdt-close" type="button" bdt-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" data-svg="close-icon"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-	                	                
-	                	                    <div class="bdt-modal-header bdt-text-left">
-	                    	<h3 class="bdt-modal-title">Đây là tiêu đề Popup của bạn</h3>
-	                    </div>
-	                	                
-	                <div class="bdt-modal-body">
-	                	Một sự thanh thản tuyệt vời đã chiếm hữu toàn bộ tâm hồn tôi, giống như những buổi sáng ngọt ngào của mùa xuân mà tôi tận hưởng bằng cả trái tim.	                </div>
-
-	                	                    <div class="bdt-modal-footer bdt-text-left">
-	                    	Popup chân trang ở đây	                    </div>
 	                		        </div>
 		    </div>
 	    </div>
@@ -589,12 +800,13 @@ body.custom-background { background-color: #ffffff; }
 				<div class="elementor-element elementor-element-f349824 elementor-widget elementor-widget-image" data-id="f349824" data-element_type="widget" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-image">
-										<img src="./dulichdanangreview_files/beautiful-luxury-outdoor-swimming-pool-hotel-resort-1-p1kzmw0vm4fjpsuazhbdbeifx88qa6894rksebfcfs.jpg" title="Beautiful luxury outdoor swimming pool in hotel and resort" alt="Beautiful luxury outdoor swimming pool with umbrella and chair in hotel and resort for travel and vacation" class="elementor-animation-shrink">											</div>
+										<img src="./dulichdanangreview_files/tour-du-thuyen-ban-dao-son-tra.jpg" title="Tour du thuyền bán đảo Sơn Trà ban ngày" alt="Tour-du-thuyen-ban-dao-son-tra-ban-ngay" class="elementor-animation-shrink">											</div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-968e656 elementor-widget elementor-widget-text-editor" data-id="968e656" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px">Phòng 3</span></h3><p style="text-align: left">Mô tả thông tin có giá trị, những điểm nổi bật, lời giới thiệu hấp dẫn về sản phẩm dịch vụ, giúp người xem dễ dàng tìm thấy nội dung của bạn trong kết quả tìm kiếm</p></div>
+					<div class="elementor-text-editor elementor-clearfix"><h3 style="text-align: left"><span style="font-size: 20px; color:#df0008">Bán đảo Sơn Trà ban ngày</span></h3><p style="text-align: left">Khu du lịch sinh thái Tiên Sa là một địa điểm du lịch hấp dẫn mà bạn khó có thể bỏ qua. Thay vì chúng ta khám phá nơi đây với cách truyền thống, bạn có thể lựa chọn ngồi du thuyền Đà Nẵng - Cát Biển để thưởng ngoạn cảnh đẹp trong "truyền thuyết" tại bán đảo Sơn Trà.<br></br>
+</p></div>
 				</div>
 				</div>
 				<div class="elementor-element elementor-element-20a5d01 elementor-widget elementor-widget-divider" data-id="20a5d01" data-element_type="widget" data-widget_type="divider.default">
@@ -611,17 +823,17 @@ body.custom-background { background-color: #ffffff; }
 							<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-tags"></i>						</span>
-										<span class="elementor-icon-list-text">$210.000</span>
+										<span class="elementor-icon-list-text"><a href="Tel:0332110913">[ Vui lòng liên hệ 📞]</a></span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-clipboard-check"></i>						</span>
-										<span class="elementor-icon-list-text">Châu Á và châu Âu</span>
+										<span class="elementor-icon-list-text"><a href="Tel:0332110913">[ Vui lòng liên hệ 📞]</a></span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-home"></i>						</span>
-										<span class="elementor-icon-list-text">3 bedrooms, 1 livingroom</span>
+										<span class="elementor-icon-list-text"><a href="Tel:0332110913">[ Vui lòng liên hệ 📞]</a></span>
 									</li>
 						</ul>
 				</div>
@@ -717,7 +929,7 @@ body.custom-background { background-color: #ffffff; }
 					<div class="elementor-widget-wrap">
 				<div class="elementor-element elementor-element-3cb5af5 elementor-widget elementor-widget-heading" data-id="3cb5af5" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">DỊCH VỤ CỦA CHÚNG TÔI</h2>		</div>
+			<h2 class="elementor-heading-title elementor-size-default"><b>Hình ảnh hoạt động</b></h2>		</div>
 				</div>
 				<section class="elementor-element elementor-element-84dbfa4 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-invisible elementor-section elementor-inner-section" data-id="84dbfa4" data-element_type="section" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
 						<div class="elementor-container elementor-column-gap-default">
@@ -1021,7 +1233,7 @@ body.custom-background { background-color: #ffffff; }
 					<div class="elementor-widget-wrap">
 				<div class="elementor-element elementor-element-68fad41 elementor-widget elementor-widget-heading" data-id="68fad41" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">ĐỊA CHỈ VĂN PHÒNG</h2>		</div>
+			<h2 class="elementor-heading-title elementor-size-default">Địa chỉ</h2>		</div>
 				</div>
 				<div class="elementor-element elementor-element-3113625 elementor-icon-list--layout-traditional elementor-widget elementor-widget-icon-list" data-id="3113625" data-element_type="widget" data-widget_type="icon-list.default">
 				<div class="elementor-widget-container">
@@ -1029,22 +1241,22 @@ body.custom-background { background-color: #ffffff; }
 							<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-home"></i>						</span>
-										<span class="elementor-icon-list-text">160 Đường số 2, KDT Vạn Phúc, P. Hiệp Bình Phước, Q. Thủ Đức, TPHCM</span>
+										<span class="elementor-icon-list-text">Bến du thuyền : Đối diện 34 Bạch Đằng, Đà Nẵng</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-phone-volume"></i>						</span>
-										<span class="elementor-icon-list-text">0336.988.676  (Hỗ trợ tư vấn sử dụng)</span>
+										<span class="elementor-icon-list-text">033 211 0913 - 0783 484 720 (Tư vấn và đặt vé)</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-mail-bulk"></i>						</span>
-										<span class="elementor-icon-list-text">simplepagevn@gmail.com</span>
+										<span class="elementor-icon-list-text">phucnt33@gmail.com</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-globe"></i>						</span>
-										<span class="elementor-icon-list-text">simplepage.vn</span>
+										<span class="elementor-icon-list-text"><a href="https://duthuyendanang.tk/">https://duthuyendanang.tk/</a></span>
 									</li>
 						</ul>
 				</div>
@@ -1089,22 +1301,17 @@ body.custom-background { background-color: #ffffff; }
 							<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-check"></i>						</span>
-										<span class="elementor-icon-list-text">Tour trong nước</span>
+										<span class="elementor-icon-list-text">Tour du thuyền ngắm cảnh đêm trên sông Hàn</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-check"></i>						</span>
-										<span class="elementor-icon-list-text">Tour quốc tế</span>
+										<span class="elementor-icon-list-text">Tour du thuyền ngắm cầu Rồng phun lửa</span>
 									</li>
 								<li class="elementor-icon-list-item">
 											<span class="elementor-icon-list-icon">
 							<i aria-hidden="true" class="fas fa-check"></i>						</span>
-										<span class="elementor-icon-list-text">Tour gia đình</span>
-									</li>
-								<li class="elementor-icon-list-item">
-											<span class="elementor-icon-list-icon">
-							<i aria-hidden="true" class="fas fa-check"></i>						</span>
-										<span class="elementor-icon-list-text">Tour 2 người</span>
+										<span class="elementor-icon-list-text">Tour du ngoạn bán đảo Sơn Trà ban ngày</span>
 									</li>
 						</ul>
 				</div>
@@ -1131,11 +1338,11 @@ body.custom-background { background-color: #ffffff; }
             
             <div class="elementor-form-fields-wrapper elementor-labels-above">
                                     <div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-100">
-                        <input size="1" type="text" name="form_fields[name]" id="form-field-name" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Họ và tên">                    </div>
-                                    <div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-field-required">
-                        <input size="1" type="email" name="form_fields[email]" id="form-field-email" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Nhập E-mail" required="required" aria-required="true">                    </div>
+                        <input size="1" type="date" name="form_fields[date]" id="form-field-date" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Ngày đi">                    </div>
+                                    <div class="elementor-field-type-name elementor-field-group elementor-column elementor-field-group-name elementor-col-100 elementor-field-required">
+                        <input size="1" type="number" name="form_fields[slve]" id="form-field-slve" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nhập số lượng vé" required="required" aria-required="true" name="quantity" min="1">                    </div>
                                     <div class="elementor-field-type-phone elementor-field-group elementor-column elementor-field-group-phone elementor-col-100 elementor-field-required">
-                        <input size="1" type="phone" name="form_fields[phone]" id="form-field-phone" class="elementor-field elementor-size-md  elementor-field-textual" placeholder="Nhập Số điện thoại" required="required" aria-required="true">                    </div>
+                        <input size="1" type="phone" name="form_fields[phone]" id="form-field-phone" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Nhập số điện thoại" required="required" aria-required="true">                    </div>
                 
                 <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100">
                     <input type="hidden" id="formCRM_nonce_field" name="formCRM_nonce_field" value="9a696099e8"><input type="hidden" name="_wp_http_referer" value="/?page_id=179474&amp;preview_id=179474&amp;preview_nonce=90035d1b1b&amp;preview=true">                    <div class="message" data-success="" data-error="" data-requiredfield="" data-invalid=""></div>
@@ -1143,17 +1350,20 @@ body.custom-background { background-color: #ffffff; }
                     <input type="hidden" name="curentUser" value="4168">
                     <input type="hidden" name="projectName" value="dulichdanangreview">
                     <input type="hidden" name="projectLink" value="https://simpleweb.vn/?page_id=179474&amp;preview_id=179474&amp;preview_nonce=90035d1b1b&amp;preview=true">
-                    <button type="submit" class="elementor-button elementor-size-sm buttonSubmitCRM elementor-animation-pulse">
-						<span>
-							                                <span class=" elementor-button-icon">
-									                                    								</span>
-                                                                                        <span class="elementor-button-text">Gửi</span>
-                            						</span>
+                    <button type="submit" class="elementor-button elementor-size-sm buttonSubmitCRM" style="opacity: 1;" onclick="successbooking()">
+						
+							                                
+									                                    								
+                                                                                        Hoàn tất
+                            						
                     </button>
-                </div>
-                <div class="result" style="width:100%;"></div>
-                <div class="loader"></div>
-            </div>
+											<script>
+						function successbooking() {
+						  alert("Đặt vé thành công, cám ơn");
+						}
+						</script>
+										</div>
+									</div>
         </form>
         		</div>
 				</div>
